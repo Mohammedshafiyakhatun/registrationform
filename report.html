@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Report Card</title>
+  <link rel="stylesheet" href="registration.css">
+  <style>
+    
+    .navbar {
+      background: #007bff;
+      padding: 10px;
+      text-align: center;
+    }
+    .navbar a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .report-card {
+      margin-top: 20px;
+      padding: 20px;
+      border: 2px solid #007bff;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeInUp 1s ease-out;
+    }
+    .report-card h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="navbar">
+    <a href="registration.html">🏠 Home</a>
+    <a href="report.html">📄 Report</a>
+  </nav>
+
+  <div class="container">
+    <h1>Student Report Card</h1>
+    <div id="reportCard"></div>
+  </div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem("reportCard"));
+    if (data) {
+      document.getElementById("reportCard").innerHTML = `
+        <div class="report-card">
+          <h2>Result Card</h2>
+          <p><strong>Name:</strong> ${data.name}</p>
+          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Phone:</strong> ${data.phone}</p>
+          <p><strong>Gender:</strong> ${data.gender}</p>
+          <p><strong>Course:</strong> ${data.course}</p>
+          <hr>
+          <p><strong>HTML Marks:</strong> ${data.marks}</p>
+          <p><strong>CSS Marks:</strong> ${data.marks1}</p>
+          <p><strong>JavaScript Marks:</strong> ${data.marks2}</p>
+          <p><strong>Total Marks:</strong> ${data.total}/300</p>
+          <p><strong>Percentage:</strong> ${data.percentage.toFixed(2)}%</p>
+          <p><strong>Grade:</strong> ${data.grade}</p>
+          <p><strong>Status:</strong> ${data.status}</p>
+        </div>
+      `;
+    } else {
+      document.getElementById("reportCard").innerHTML = 
+        "<p>No report found. Please register first.</p>";
+    }
+  </script>
+</body>
+</html>
